@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Gumamela</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="content">
+  <div id="colOne">
+    <div id="header">
+      <h1><a href="#">Kriti's Creations</a></h1>
+   
+    </div>
+    <div class="post">
+      <h2 class="title">Welcome..!</h2>
+            <div class="story">
+        <p><em><strong>Kriti's Creations</strong></em> has come a long way in the business of flower and making others happy. Check out some of our bouquets available :) </p>
+      </div>
+      <div class="meta">
+      </div>
+    </div>
+    <div class="post">
+      <h2 class="title">Available Bouquets</h2>
+      <div class="story">
+      
+        <table>
+    		
+<form action="#n" name="theForm">			
+			<% @bouquets.each do |bouquet| %>
+    <tr> </tr>
+	
+	<tr>
+      <td><%= bouquet.name %> </td>
+	  <td> </td> 
+	
+	  <td> </td>
+	  <td><input type= "radio" name="Select" value=<%= bouquet.id %> id="s" onclick="foo()" > </td>
+	 
+	  
+    </tr>
+
+<% end %>
+
+<p>
+
+<input type="button" name="View" value="View" id="1" onClick="view()" disabled>
+<input type="button" name="Edit" value="Edit" id="2" onClick="edit()" disabled>
+<input type="button" name="Delete" value="Delete" id="3" onClick="func_delete()" disabled>
+
+
+</table>
+
+ 
+      </div>
+      <div class="meta">
+       
+      </div>
+    </div>
+  </div>
+  <div id="colTwo">
+    <ul>
+      <li id="menu">
+        <h2>Pages</h2>
+        <ul>
+          <li class="active"><a href="#">Home</a></li>
+		 
+		  <li><%= link_to "New", new_url %></li>            
+		
+        </ul>
+      </li>
+      <li>
+        <h2>You can make the world happy if you are happy :)</h2>
+       
+      </li>
+
+        <p> <blockquote>
+		 “The earth laughs in flowers.”  ― Ralph Waldo Emerson
+       </blockquote> </p>
+	   <p> <blockquote>
+		“I must have flowers, always, and always.”  ― Claude Monet
+         </blockquote>
+    
+   </p> 
+ 
+      
+    </ul>
+  </div>
+  <div style="clear: both;">&nbsp;</div>
+</div>
+<div id="footer">
+ <p><strong>We are happy to have you as our visitors</strong></a></p>
+</div>
+</body>
+
+<script>
+function foo()
+{
+	document.getElementById("1").disabled= false;
+	document.getElementById("2").disabled= false;
+	document.getElementById("3").disabled= false;
+	
+}
+</script>
+<script>
+function func_delete()
+{
+	var x= document.getElementsByName("Select");
+	var val;
+	for( var i=0; i< x.length; i++)
+	{
+		if(x[i].type == "radio" && x[i].checked)
+		{
+			val= x[i].value;
+			break;
+		}
+				
+	}
+	var result= confirm("Are you sure you want to delete the selected item?");
+	if (result==true)
+{	document.forms[0].action ="/delete/"+val+"/";
+	document.forms[0].submit();}
+   
+}
+</script>
+
+<script>
+function edit()
+{
+	
+	var etemp= document.getElementsByName("Select");
+	var e;
+	for( var i=0; i< etemp.length; i++)
+	{
+		if(etemp[i].type == "radio" && etemp[i].checked)
+		{
+			e= etemp[i].value;
+			break;
+		}
+				
+	}
+	document.forms[0].action ="/edit/"+e+"/";
+	document.forms[0].submit();
+}
+</script>
+
+<script>
+function view()
+{
+	var vtemp= document.getElementsByName("Select");
+	var v;
+	
+	for( var i=0; i< vtemp.length; i++)
+	{
+		if(vtemp[i].type == "radio" && vtemp[i].checked)
+		{
+			v= vtemp[i].value;
+			
+			break;
+		}
+
+	}
+	
+	document.forms[0].action ="/view/"+v+"/";
+	document.forms[0].submit();
+}
+</script>
+</html>

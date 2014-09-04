@@ -1,0 +1,41 @@
+<%= form_for @bouquets do |f| %>
+
+ 
+<p>
+    <%= f.label "Bouquet-Name" %><br>
+    <%= f.text_field :name %>
+
+  </p>
+  
+ 
+<p>Type<br>
+  <%= f.radio_button :category, 'Bouquet' %><b>Bouquet</b>
+  <%= f.radio_button :category, 'Corsage' %><b>Corsage</b>
+  <%= f.radio_button :category, 'Reath' %><b>Reath</b>
+ 
+</p>
+  
+<p>Arrangement- Style<br> 
+ <%= f.select :arrangement, options_for_select(%w[Basket Handtied Plants Posy ]) %>
+</p>
+
+<p>Occasion<br>
+<%= f.select :occasion, options_for_select(%w[Wedding Birthday Funeral Prom Everyday]) %>
+</p>	
+
+<p>
+    <%= f.label "Price" %><br>
+    <%= f.text_field :price %>
+  </p>
+  
+
+<p> Home Delivery Applicable 
+
+  <%= f.radio_button :h_delivery, 'true' %><b>Yes</b>
+  <%= f.radio_button :h_delivery, 'false' %><b>No</b>
+ </p>
+  
+ <p>
+    <%= f.submit %>
+  </p>
+<% end %>
